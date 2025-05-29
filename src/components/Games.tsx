@@ -5,6 +5,9 @@ import { MemoryGame } from "@/components/MemoryGame";
 import { SequenceGame } from "@/components/SequenceGame";
 import { LogicGrid } from "@/components/LogicGrid";
 import { WordScramble } from "@/components/WordScramble";
+import { SudokuGame } from "@/components/SudokuGame";
+import { PatternMatch } from "@/components/PatternMatch";
+import { CipherGame } from "@/components/CipherGame";
 import { useState } from "react";
 
 export const Games = () => {
@@ -23,7 +26,7 @@ export const Games = () => {
         </div>
 
         {!activeGame && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-8xl mx-auto">
             <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 backdrop-blur-md rounded-lg p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all cursor-pointer"
                  onClick={() => setActiveGame('pattern')}>
               <div className="text-center">
@@ -93,9 +96,52 @@ export const Games = () => {
                 </Button>
               </div>
             </div>
+
+            <div className="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 backdrop-blur-md rounded-lg p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-all cursor-pointer"
+                 onClick={() => setActiveGame('sudoku')}>
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔢</div>
+                <h3 className="text-xl font-bold text-cyan-300 mb-3">Zoombini Sudoku</h3>
+                <p className="text-white mb-4 text-sm">
+                  Classic logic puzzle with a Zoombini twist!
+                </p>
+                <Button className="bg-cyan-600 hover:bg-cyan-700">
+                  Play Now
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-yellow-600/20 to-orange-600/20 backdrop-blur-md rounded-lg p-6 border border-yellow-500/30 hover:border-yellow-400/50 transition-all cursor-pointer"
+                 onClick={() => setActiveGame('patterns')}>
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔍</div>
+                <h3 className="text-xl font-bold text-yellow-300 mb-3">Pattern Match</h3>
+                <p className="text-white mb-4 text-sm">
+                  Identify number and shape patterns like a true Zoombini!
+                </p>
+                <Button className="bg-yellow-600 hover:bg-yellow-700">
+                  Play Now
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-md rounded-lg p-6 border border-indigo-500/30 hover:border-indigo-400/50 transition-all cursor-pointer"
+                 onClick={() => setActiveGame('cipher')}>
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔓</div>
+                <h3 className="text-xl font-bold text-indigo-300 mb-3">Cipher Decoder</h3>
+                <p className="text-white mb-4 text-sm">
+                  Crack encrypted messages using cryptographic logic!
+                </p>
+                <Button className="bg-indigo-600 hover:bg-indigo-700">
+                  Play Now
+                </Button>
+              </div>
+            </div>
           </div>
         )}
 
+        {/* Game Components */}
         {activeGame === 'pattern' && (
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-between items-center mb-6">
@@ -173,6 +219,54 @@ export const Games = () => {
               </Button>
             </div>
             <WordScramble />
+          </div>
+        )}
+
+        {activeGame === 'sudoku' && (
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-3xl font-bold text-cyan-300">Zoombini Sudoku</h3>
+              <Button 
+                variant="outline" 
+                onClick={() => setActiveGame(null)}
+                className="border-cyan-400 text-cyan-300 hover:bg-cyan-400 hover:text-black"
+              >
+                Back to Games
+              </Button>
+            </div>
+            <SudokuGame />
+          </div>
+        )}
+
+        {activeGame === 'patterns' && (
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-3xl font-bold text-yellow-300">Pattern Match</h3>
+              <Button 
+                variant="outline" 
+                onClick={() => setActiveGame(null)}
+                className="border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-black"
+              >
+                Back to Games
+              </Button>
+            </div>
+            <PatternMatch />
+          </div>
+        )}
+
+        {activeGame === 'cipher' && (
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-3xl font-bold text-indigo-300">Cipher Decoder</h3>
+              <Button 
+                variant="outline" 
+                onClick={() => setActiveGame(null)}
+                className="border-indigo-400 text-indigo-300 hover:bg-indigo-400 hover:text-black"
+              >
+                Back to Games
+              </Button>
+            </div>
+            <CipherGame />
           </div>
         )}
       </div>

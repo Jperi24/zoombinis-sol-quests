@@ -1,8 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Twitter, Send, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Community = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto">
@@ -55,22 +58,15 @@ export const Community = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-purple-500/30">
-              <h3 className="text-2xl font-bold text-purple-300 mb-4">🎮 Gaming Competitions</h3>
-              <p className="text-white leading-relaxed mb-4">
-                Participate in weekly puzzle competitions! Top solvers earn $ZOOM rewards and special recognition in our community.
-              </p>
-              <Button className="bg-purple-600 hover:bg-purple-700">
-                View Leaderboard
-              </Button>
-            </div>
-            
             <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-green-500/30">
               <h3 className="text-2xl font-bold text-green-300 mb-4">📚 Educational Resources</h3>
               <p className="text-white leading-relaxed mb-4">
                 Access exclusive guides on crypto, DeFi, and blockchain technology - all explained with Zoombini-style logical thinking!
               </p>
-              <Button className="bg-green-600 hover:bg-green-700">
+              <Button 
+                onClick={() => navigate('/education')}
+                className="bg-green-600 hover:bg-green-700"
+              >
                 Learn More
               </Button>
             </div>
