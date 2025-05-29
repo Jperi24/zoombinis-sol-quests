@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft, BookOpen, Brain, Coins, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Education = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-green-800">
       <Navigation />
@@ -51,7 +54,10 @@ const Education = () => {
                   <p className="text-sm text-gray-300">How the network agrees on truth - democratic decision making in action!</p>
                 </div>
               </div>
-              <Button className="bg-blue-600 hover:bg-blue-700 w-full">
+              <Button 
+                onClick={() => navigate('/guides/blockchain-basics')}
+                className="bg-blue-600 hover:bg-blue-700 w-full"
+              >
                 Start Learning
               </Button>
             </div>
@@ -77,7 +83,10 @@ const Education = () => {
                   <p className="text-sm text-gray-300">Micro-cent transactions that don't break the bank.</p>
                 </div>
               </div>
-              <Button className="bg-purple-600 hover:bg-purple-700 w-full">
+              <Button 
+                onClick={() => navigate('/guides/solana-deep-dive')}
+                className="bg-purple-600 hover:bg-purple-700 w-full"
+              >
                 Explore Solana
               </Button>
             </div>
@@ -103,7 +112,10 @@ const Education = () => {
                   <p className="text-sm text-gray-300">Automated market makers - robots that help you trade fairly!</p>
                 </div>
               </div>
-              <Button className="bg-green-600 hover:bg-green-700 w-full">
+              <Button 
+                onClick={() => navigate('/guides/defi-beginners')}
+                className="bg-green-600 hover:bg-green-700 w-full"
+              >
                 Master DeFi
               </Button>
             </div>
