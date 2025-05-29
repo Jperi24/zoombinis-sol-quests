@@ -3,31 +3,77 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const CIPHERS = [
-  { encoded: "FUBCGVAV", decoded: "ZOOMBINI", cipher: "ROT13" },
-  { encoded: "AQQOCPKP", decoded: "ZOOMBINI", cipher: "Caesar +8" },
-  { encoded: "CRRUOPLOL", decoded: "BLOCKCHAIN", cipher: "ROT13" },
-  { encoded: "YVAPB", decoded: "LOGIC", cipher: "Caesar +7" }
+const CIPHER_TYPES = {
+  ROT13: (text: string) => text.replace(/[A-Z]/g, (char) => 
+    String.fromCharCode(((char.charCodeAt(0) - 65 + 13) % 26) + 65)
+  ),
+  CAESAR: (text: string, shift: number) => text.replace(/[A-Z]/g, (char) => 
+    String.fromCharCode(((char.charCodeAt(0) - 65 + shift) % 26) + 65)
+  ),
+  REVERSE: (text: string) => text.split('').reverse().join(''),
+  ATBASH: (text: string) => text.replace(/[A-Z]/g, (char) => 
+    String.fromCharCode(90 - (char.charCodeAt(0) - 65))
+  )
+};
+
+const CRYPTO_WORDS = [
+  "BLOCKCHAIN", "SOLANA", "ETHEREUM", "BITCOIN", "DEFI", "SMART", "TOKEN", 
+  "WALLET", "MINING", "STAKING", "YIELD", "LIQUIDITY", "PROTOCOL", "GOVERNANCE"
 ];
 
 export const CipherGame = () => {
-  const [currentCipher] = useState(CIPHERS[Math.floor(Math.random() * CIPHERS.length)]);
+  const [currentWord] = useState(CRYPTO_WORDS[Math.floor(Math.random() * CRYPTO_WORDS.length)]);
+  const [cipherType] = useState(() => {
+    const types = Object.keys(CIPHER_TYPES);
+    return types[Math.floor(Math.random() * types.length)] as keyof typeof CIPHER_TYPES;
+  });
+  const [shift] = useState(Math.floor(Math.random() * 25) + 1);
   const [userAnswer, setUserAnswer] = useState("");
-  const [showHint, setShowHint] = useState(false);
   const [gameWon, setGameWon] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [showFrequencyAnalysis, setShowFrequencyAnalysis] = useState(false);
   const { toast } = useToast();
 
+  const getEncryptedWord = () => {
+    switch (cipherType) {
+      case 'CAESAR':
+        return CIPHER_TYPES.CAESAR(currentWord, shift);
+      case 'ROT13':
+        return CIPHER_TYPES.ROT13(currentWord);
+      case 'REVERSE':
+        return CIPHER_TYPES.REVERSE(currentWord);
+      case 'ATBASH':
+        return CIPHER_TYPES.ATBASH(currentWord);
+      default:
+        return currentWord;
+    }
+  };
+
+  const encryptedWord = getEncryptedWord();
+
+  const getLetterFrequency = (text: string) => {
+    const freq: { [key: string]: number } = {};
+    for (const char of text) {
+      freq[char] = (freq[char] || 0) + 1;
+    }
+    return Object.entries(freq).sort((a, b) => b[1] - a[1]);
+  };
+
   const checkAnswer = () => {
-    if (userAnswer.toUpperCase() === currentCipher.decoded) {
+    setAttempts(attempts + 1);
+    
+    if (userAnswer.toUpperCase() === currentWord) {
       setGameWon(true);
+      const performance = attempts === 0 ? "Genius!" : attempts < 3 ? "Excellent!" : "Good work!";
       toast({
-        title: "🔓 Cipher Cracked!",
-        description: "You've broken the code! Your cryptographic skills are blockchain-ready!",
+        title: `🔓 ${performance}`,
+        description: `Cipher cracked in ${attempts + 1} attempts! You're a cryptographic master!`,
       });
     } else {
+      const isClose = userAnswer.toUpperCase().length === currentWord.length;
       toast({
-        title: "Code not cracked yet!",
-        description: "Think about letter substitution patterns...",
+        title: "🔒 Not quite right!",
+        description: isClose ? "Right length! Check your cipher logic..." : "Think about the cipher pattern...",
         variant: "destructive",
       });
     }
@@ -35,27 +81,46 @@ export const CipherGame = () => {
 
   const resetGame = () => {
     setUserAnswer("");
-    setShowHint(false);
     setGameWon(false);
+    setAttempts(0);
+    setShowFrequencyAnalysis(false);
     window.location.reload();
+  };
+
+  const getCipherHint = () => {
+    switch (cipherType) {
+      case 'CAESAR':
+        return `Each letter is shifted ${shift} positions forward in the alphabet`;
+      case 'ROT13':
+        return 'Each letter is shifted 13 positions in the alphabet';
+      case 'REVERSE':
+        return 'The letters are in reverse order';
+      case 'ATBASH':
+        return 'A↔Z, B↔Y, C↔X... (reverse alphabet substitution)';
+      default:
+        return 'Unknown cipher type';
+    }
   };
 
   return (
     <div className="bg-black/30 backdrop-blur-md rounded-lg p-8 border border-indigo-500/30">
       <div className="text-center mb-8">
         <h4 className="text-2xl font-bold text-white mb-4">
-          Crypto Cipher Challenge
+          Advanced Cryptographic Challenge
         </h4>
         <p className="text-indigo-200">
-          Decode the encrypted message using logical deduction!
+          Crack the encrypted crypto term using logical deduction!
         </p>
+        <div className="mt-4 text-indigo-300">
+          <span className="font-semibold">Attempts: {attempts}</span>
+        </div>
       </div>
 
       <div className="mb-8">
-        <div className="bg-black/50 rounded-lg p-6 text-center">
+        <div className="bg-black/50 rounded-lg p-6 text-center border border-indigo-400">
           <h5 className="text-lg font-semibold text-indigo-300 mb-4">Encrypted Message</h5>
-          <div className="text-4xl font-mono font-bold text-indigo-400 tracking-widest mb-6">
-            {currentCipher.encoded}
+          <div className="text-4xl font-mono font-bold text-indigo-400 tracking-widest mb-6 bg-gray-900 rounded p-4">
+            {encryptedWord}
           </div>
           <div className="text-center">
             <input
@@ -65,6 +130,7 @@ export const CipherGame = () => {
               placeholder="Enter decoded message"
               className="w-64 h-12 text-center text-xl font-bold bg-black/50 border-2 border-indigo-400 rounded-lg text-white placeholder-gray-400"
               disabled={gameWon}
+              maxLength={15}
             />
           </div>
         </div>
@@ -79,32 +145,38 @@ export const CipherGame = () => {
           Decrypt Message
         </Button>
         <Button
-          onClick={() => setShowHint(!showHint)}
+          onClick={() => setShowFrequencyAnalysis(!showFrequencyAnalysis)}
           variant="outline"
-          className="border-indigo-400 text-indigo-300 hover:bg-indigo-400 hover:text-black"
+          className="border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-black"
           disabled={gameWon}
         >
-          {showHint ? 'Hide Hint' : 'Show Hint'}
+          {showFrequencyAnalysis ? 'Hide Analysis' : 'Frequency Analysis'}
         </Button>
         <Button
           onClick={resetGame}
           variant="outline"
-          className="border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-black"
+          className="border-indigo-400 text-indigo-300 hover:bg-indigo-400 hover:text-black"
         >
           New Cipher
         </Button>
       </div>
 
-      {showHint && !gameWon && (
-        <div className="text-center mb-4">
-          <div className="bg-yellow-600/20 rounded-lg p-4 border border-yellow-500/30">
-            <p className="text-yellow-300 font-semibold">
-              Cipher Type: {currentCipher.cipher}
+      {showFrequencyAnalysis && !gameWon && (
+        <div className="mb-4">
+          <div className="bg-purple-600/20 rounded-lg p-4 border border-purple-500/30">
+            <h6 className="text-purple-300 font-semibold mb-2">Letter Frequency Analysis</h6>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {getLetterFrequency(encryptedWord).map(([letter, count]) => (
+                <span key={letter} className="bg-purple-500/30 px-2 py-1 rounded text-purple-200">
+                  {letter}: {count}
+                </span>
+              ))}
+            </div>
+            <p className="text-purple-200 text-sm mt-2">
+              Cipher Type: {cipherType}
             </p>
-            <p className="text-yellow-200 text-sm mt-2">
-              {currentCipher.cipher.includes('ROT13') 
-                ? 'Each letter is shifted 13 positions in the alphabet' 
-                : 'Each letter is shifted by a fixed number of positions'}
+            <p className="text-purple-200 text-sm">
+              Hint: {getCipherHint()}
             </p>
           </div>
         </div>
@@ -114,7 +186,10 @@ export const CipherGame = () => {
         <div className="mt-6 text-center">
           <div className="text-4xl mb-2">🔓</div>
           <p className="text-indigo-300 font-bold">
-            Codebreaker extraordinaire! You're ready for cryptographic protocols!
+            Cryptographic genius! The word was "{currentWord}"
+          </p>
+          <p className="text-indigo-200 text-sm mt-2">
+            You cracked the {cipherType} cipher perfectly!
           </p>
         </div>
       )}
