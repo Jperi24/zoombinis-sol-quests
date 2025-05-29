@@ -39,15 +39,10 @@ export const Hero = () => {
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-purple-500/30">
               <h3 className="text-xl font-bold text-purple-300 mb-2">🧠 Logic-Powered</h3>
               <p className="text-white">Built on smart contracts that reward logical thinking</p>
-            </div>
-            
-            <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-pink-500/30">
-              <h3 className="text-xl font-bold text-pink-300 mb-2">🎮 Gamified</h3>
-              <p className="text-white">Earn tokens by solving puzzles and challenges</p>
             </div>
             
             <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-green-500/30">
