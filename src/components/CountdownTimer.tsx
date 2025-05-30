@@ -63,7 +63,7 @@ export const CountdownTimer = () => {
           <div className="text-purple-300 text-sm mt-1">Seconds</div>
         </div>
       </div>
-      <p className="text-purple-200 text-center">Until $ZOOM Launch on June 15th, 2025</p>
+      <p className="text-purple-200 text-center">Until $ZOOM Launch on June 30th, 2025</p>
     </div>
   );
 };
