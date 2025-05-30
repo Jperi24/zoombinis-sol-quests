@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Twitter, Send, Users } from "lucide-react";
+import { MessageCircle, Twitter, Send, Users, Youtube } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const Community = () => {
@@ -18,7 +18,7 @@ export const Community = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8 mb-12">
           <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-md rounded-lg p-6 border border-blue-500/30 text-center">
             <Twitter className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-blue-300 mb-2">Twitter/X</h3>
@@ -52,6 +52,32 @@ export const Community = () => {
               onClick={() => window.open('https://t.me/+6evszhnfIwkxY2Qx', '_blank')}
             >
               Join Telegram
+            </Button>
+          </div>
+
+          <div className="bg-gradient-to-br from-red-600/20 to-pink-600/20 backdrop-blur-md rounded-lg p-6 border border-red-500/30 text-center">
+            <svg className="w-12 h-12 text-red-400 mx-auto mb-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-1.218v.441a4.793 4.793 0 0 1-3.77 4.245h-.001a4.793 4.793 0 0 1-3.77-4.245V2H6.042v.441a4.793 4.793 0 0 1-3.77 4.245h-.001a4.793 4.793 0 0 1-3.77-4.245V2H.5v.441a4.793 4.793 0 0 1-3.77 4.245h-.001a4.793 4.793 0 0 1-3.77-4.245V2h-1.218v.441a4.793 4.793 0 0 1-3.77 4.245h-.001a4.793 4.793 0 0 1-3.77-4.245V2h-1.218v.441a4.793 4.793 0 0 1-3.77 4.245v.001c-1.138 0-2.223-.35-3.136-.99a.625.625 0 0 0-.84.926 6.038 6.038 0 0 0 3.976 1.264h.001a6.038 6.038 0 0 0 3.976-1.264.625.625 0 0 0-.84-.926A4.793 4.793 0 0 1-7.5 6.686v.001A4.793 4.793 0 0 1-4.364 2.441V2h1.218v.441a4.793 4.793 0 0 1 3.77 4.245h.001a4.793 4.793 0 0 1 3.77-4.245V2H5.042v.441a4.793 4.793 0 0 1 3.77 4.245h.001a4.793 4.793 0 0 1 3.77-4.245V2h1.218v.441a4.793 4.793 0 0 1 3.77 4.245z"/>
+            </svg>
+            <h3 className="text-xl font-bold text-red-300 mb-2">TikTok</h3>
+            <p className="text-white mb-4">Fun content & dances</p>
+            <Button 
+              className="bg-red-600 hover:bg-red-700 w-full"
+              onClick={() => window.open('https://www.tiktok.com/@zoombini_on_sol?is_from_webapp=1&sender_device=pc', '_blank')}
+            >
+              Follow @zoombini_on_sol
+            </Button>
+          </div>
+
+          <div className="bg-gradient-to-br from-red-600/20 to-orange-600/20 backdrop-blur-md rounded-lg p-6 border border-red-500/30 text-center">
+            <Youtube className="w-12 h-12 text-red-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-red-300 mb-2">YouTube</h3>
+            <p className="text-white mb-4">Tutorials & gameplay</p>
+            <Button 
+              className="bg-red-600 hover:bg-red-700 w-full"
+              onClick={() => window.open('https://www.youtube.com/@zoombinionsol', '_blank')}
+            >
+              Subscribe
             </Button>
           </div>
 

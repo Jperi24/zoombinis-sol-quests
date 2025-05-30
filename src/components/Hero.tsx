@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Coins, Gamepad2 } from "lucide-react";
+import { ArrowRight, Gamepad2 } from "lucide-react";
+import { CountdownTimer } from "./CountdownTimer";
 
 export const Hero = () => {
   return (
@@ -27,11 +27,9 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg">
-              <Coins className="mr-2" />
-              Buy $ZOOM Now
-              <ArrowRight className="ml-2" />
-            </Button>
+            <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-yellow-500/30">
+              <CountdownTimer />
+            </div>
             
             <Button size="lg" variant="outline" className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-black font-bold py-4 px-8 rounded-full text-lg">
               <Gamepad2 className="mr-2" />
