@@ -12,7 +12,7 @@ export const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const targetDate = new Date('2025-06-15T00:00:00').getTime();
+    const targetDate = new Date('2025-06-30T00:00:00').getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
