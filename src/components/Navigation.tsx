@@ -27,21 +27,15 @@ export const Navigation = () => {
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <button onClick={() => scrollToSection('about')} className="text-white hover:text-purple-300 transition-colors">
-              About
-            </button>
             <button onClick={() => scrollToSection('games')} className="text-white hover:text-purple-300 transition-colors">
               Games
-            </button>
-            <button onClick={() => scrollToSection('tokenomics')} className="text-white hover:text-purple-300 transition-colors">
-              Tokenomics
             </button>
             <button onClick={() => scrollToSection('roadmap')} className="text-white hover:text-purple-300 transition-colors">
               Roadmap
             </button>
-            <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
-              Buy $ZOOM
-            </Button>
+            <div className="bg-black/30 backdrop-blur-md rounded-lg px-4 py-2 border border-yellow-500/30">
+              <span className="text-yellow-400 font-bold">🚀 COMING SOON</span>
+            </div>
           </div>
 
           <div className="md:hidden">
@@ -54,21 +48,15 @@ export const Navigation = () => {
         {isOpen && (
           <div className="md:hidden bg-black/40 backdrop-blur-md rounded-lg mt-2 p-4">
             <div className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('about')} className="text-white hover:text-purple-300 transition-colors text-left">
-                About
-              </button>
               <button onClick={() => scrollToSection('games')} className="text-white hover:text-purple-300 transition-colors text-left">
                 Games
-              </button>
-              <button onClick={() => scrollToSection('tokenomics')} className="text-white hover:text-purple-300 transition-colors text-left">
-                Tokenomics
               </button>
               <button onClick={() => scrollToSection('roadmap')} className="text-white hover:text-purple-300 transition-colors text-left">
                 Roadmap
               </button>
-              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 w-full">
-                Buy $ZOOM
-              </Button>
+              <div className="bg-black/30 backdrop-blur-md rounded-lg px-4 py-2 border border-yellow-500/30 text-center">
+                <span className="text-yellow-400 font-bold">🚀 COMING SOON</span>
+              </div>
             </div>
           </div>
         )}

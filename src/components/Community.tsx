@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Twitter, Send, Users, Youtube } from "lucide-react";
+import { MessageCircle, Twitter, Send, Youtube } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const Community = () => {
@@ -18,7 +18,7 @@ export const Community = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-12">
           <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-md rounded-lg p-6 border border-blue-500/30 text-center">
             <Twitter className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-blue-300 mb-2">Twitter/X</h3>
@@ -27,7 +27,7 @@ export const Community = () => {
               className="bg-blue-600 hover:bg-blue-700 w-full"
               onClick={() => window.open('https://x.com/ZoombiniOnSol', '_blank')}
             >
-              Follow @ZoombiniOnSol
+              Follow
             </Button>
           </div>
 
@@ -65,7 +65,7 @@ export const Community = () => {
               className="bg-red-600 hover:bg-red-700 w-full"
               onClick={() => window.open('https://www.tiktok.com/@zoombini_on_sol?is_from_webapp=1&sender_device=pc', '_blank')}
             >
-              Follow @zoombini_on_sol
+              Follow
             </Button>
           </div>
 
@@ -78,15 +78,6 @@ export const Community = () => {
               onClick={() => window.open('https://www.youtube.com/@zoombinionsol', '_blank')}
             >
               Subscribe
-            </Button>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-600/20 to-teal-600/20 backdrop-blur-md rounded-lg p-6 border border-green-500/30 text-center">
-            <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-green-300 mb-2">Community</h3>
-            <p className="text-white mb-4">5,000+ Members</p>
-            <Button className="bg-green-600 hover:bg-green-700 w-full">
-              View Stats
             </Button>
           </div>
         </div>
