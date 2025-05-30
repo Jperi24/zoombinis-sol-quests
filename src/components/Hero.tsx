@@ -26,15 +26,10 @@ export const Hero = () => {
             Zoombini On Sol brings the beloved puzzle masters to the blockchain!
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex justify-center items-center mb-12">
             <div className="bg-black/30 backdrop-blur-md rounded-lg p-6 border border-yellow-500/30">
               <CountdownTimer />
             </div>
-            
-            <Button size="lg" variant="outline" className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-black font-bold py-4 px-8 rounded-full text-lg">
-              <Gamepad2 className="mr-2" />
-              Play Games
-            </Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
