@@ -27,9 +27,6 @@ export const Navigation = () => {
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <button onClick={() => scrollToSection('games')} className="text-white hover:text-purple-300 transition-colors">
-              Games
-            </button>
             <button onClick={() => scrollToSection('roadmap')} className="text-white hover:text-purple-300 transition-colors">
               Roadmap
             </button>
@@ -48,9 +45,6 @@ export const Navigation = () => {
         {isOpen && (
           <div className="md:hidden bg-black/40 backdrop-blur-md rounded-lg mt-2 p-4">
             <div className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('games')} className="text-white hover:text-purple-300 transition-colors text-left">
-                Games
-              </button>
               <button onClick={() => scrollToSection('roadmap')} className="text-white hover:text-purple-300 transition-colors text-left">
                 Roadmap
               </button>
