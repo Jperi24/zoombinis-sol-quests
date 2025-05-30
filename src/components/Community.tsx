@@ -23,8 +23,11 @@ export const Community = () => {
             <Twitter className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-blue-300 mb-2">Twitter/X</h3>
             <p className="text-white mb-4">Latest updates & memes</p>
-            <Button className="bg-blue-600 hover:bg-blue-700 w-full">
-              Follow @ZoombiniSol
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700 w-full"
+              onClick={() => window.open('https://x.com/ZoombiniOnSol', '_blank')}
+            >
+              Follow @ZoombiniOnSol
             </Button>
           </div>
 
@@ -32,7 +35,10 @@ export const Community = () => {
             <MessageCircle className="w-12 h-12 text-purple-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-purple-300 mb-2">Discord</h3>
             <p className="text-white mb-4">Chat & game together</p>
-            <Button className="bg-purple-600 hover:bg-purple-700 w-full">
+            <Button 
+              className="bg-purple-600 hover:bg-purple-700 w-full"
+              onClick={() => window.open('https://discord.gg/qEgfQnkq', '_blank')}
+            >
               Join Discord
             </Button>
           </div>
@@ -41,7 +47,10 @@ export const Community = () => {
             <Send className="w-12 h-12 text-pink-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-pink-300 mb-2">Telegram</h3>
             <p className="text-white mb-4">Community discussions</p>
-            <Button className="bg-pink-600 hover:bg-pink-700 w-full">
+            <Button 
+              className="bg-pink-600 hover:bg-pink-700 w-full"
+              onClick={() => window.open('https://t.me/+6evszhnfIwkxY2Qx', '_blank')}
+            >
               Join Telegram
             </Button>
           </div>
